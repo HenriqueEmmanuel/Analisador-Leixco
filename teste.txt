@@ -1,29 +1,5 @@
-import java.util.Scanner;
-
-public class SomaNumeros {
-
-    public static void main(String[] args) {
-        // Criação de um Scanner para capturar a entrada do usuário
-        Scanner scanner = new Scanner(System.in);
-        
-        // Pergunta ao usuário quantos números ele deseja somar
-        System.out.print("Quantos números você quer somar? ");
-        int n = scanner.nextInt();
-
-        // Inicializa uma variável para armazenar a soma
-        int soma = 0;
-        
-        // Laço para capturar os números e somá-los
-        for (int i = 1; i <= n; i++) {
-            System.out.print("Digite o " + i + "º número: ");
-            int numero = scanner.nextInt();
-            soma += numero;  // Adiciona o número à soma
-        }
-
-        // Exibe o resultado
-        System.out.println("A soma dos números é: " + soma);
-
-        // Fecha o scanner para liberar o recurso
-        scanner.close();
-    }
+public static void main(String[]args){
+    int a=10, b=4;
+    float c = a/b;
+    System.out.println(c);
 }
