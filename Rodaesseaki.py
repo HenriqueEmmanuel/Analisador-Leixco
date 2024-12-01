@@ -3,12 +3,11 @@ import re
 class Analisador:
     def __init__(self, caminho_entrada):
         self.caminho_entrada = caminho_entrada
-        self.tokens = []  # Lista de tokens extraídos
-        self.tabela_simbolos = {}  # Tabela de símbolos
-        self.proximo_id = 1  # Contador para os IDs dos identificadores
-        self.tokens_com_ids = []  # Tokens com IDs associados
+        self.tokens = []  
+        self.tabela_simbolos = {}  
+        self.proximo_id = 1  
+        self.tokens_com_ids = []  
 
-        # Definindo as palavras reservadas do Java
         self.palavras_reservadas_java = {
             "abstract": "Palavra-chave",
             "assert": "Palavra-chave",
@@ -63,43 +62,38 @@ class Analisador:
             "while": "Palavra-chave"
         }
 
-    # Função que realiza a análise léxica
     def analisador_lexico(self):
         try:
             with open(self.caminho_entrada, "r") as arquivo:
                 conteudo = arquivo.read()
 
-                # Remover comentários do código
                 conteudo_sem_comentarios = re.sub(r"//.*", "", conteudo)
                 conteudo_sem_comentarios = re.sub(r"/\*.*?\*/", "", conteudo_sem_comentarios, flags=re.DOTALL)
 
-                # Exibir o conteúdo sem comentários (para verificação)
                 print("Conteúdo do arquivo sem comentários:\n")
                 print(conteudo_sem_comentarios)
 
-                # Expressão regular para identificar os tokens
-                padrao = r"[a-zA-Z_][a-zA-Z_0-9]*|\d+\.\d+|\d+|[\{\}\[\]\(\),;=+\-*/\"'\.\<\>\=\!\&\|\^\~\%\?]"
+                padrao = r"\"[^\"]*\"|\d+\.\d+|\d+|[a-zA-Z_][a-zA-Z_0-9]*|[\{\}\[\]\(\),;=+\-*/\"'\.\<\>\=\!\&\|\^\~\%\?]"
                 self.tokens = re.findall(padrao, conteudo_sem_comentarios)
 
         except FileNotFoundError:
             print(f"Erro: O arquivo {self.caminho_entrada} não foi encontrado.")
             exit()
 
-    # Função para agrupar os tokens e identificar seus tipos
     def agrupa_tokens(self):
-        resultado = []  # Lista para armazenar os tokens agrupados
+        resultado = []  
         delimitadores_comum = {"{", "}", "(", ")", "[", "]", ",", ";", "\"", "\'", "."}
 
-        operadores_comparacao = {"<", ">", "<=", ">=", "==", "!="}  # Definindo operadores de comparação
+        operadores_comparacao = {"<", ">", "<=", ">=", "==", "!="} 
 
         for token in self.tokens:
-            if token.startswith("\"") and token.endswith("\""):  # Se for uma string
+            if token.startswith("\"") and token.endswith("\""): 
                 simbolo = "STRING"
-                token = token[1:-1]  # Remover as aspas
-                token = token.replace("\\\"", "\"").replace("\\n", "\n").replace("\\t", "\t")  # Destruir escapes
-                # Inserir a string como um token único
+                token = token[1:-1] 
+                token = token.replace("\\\"", "\"").replace("\\n", "\n").replace("\\t", "\t")  
+               
                 resultado.append((f"\"{token}\"", simbolo))
-            elif re.match(r"^\d+(\.\d+)?$", token):  # Se for número (inteiro ou flutuante)
+            elif re.match(r"^\d+(\.\d+)?$", token):  
                 simbolo = "Número"
                 resultado.append((token, simbolo))
             else:
@@ -113,7 +107,6 @@ class Analisador:
                         simbolo = "Operador de Comparacao"
                         resultado.append((token, simbolo))
                     else:
-                        # Tratando outros operadores aritméticos
                         if token == "+":
                             simbolo = "Operador de Soma"
                         elif token == "-":
@@ -149,10 +142,10 @@ class Analisador:
 
         self.tokens_com_ids = resultado
 
-    # Função para gerar o arquivo de saída
+
     def gerar_arquivo_saida(self):
         try:
-            caminho_saida = "saida.txt"  # Caminho de saída
+            caminho_saida = "saida.txt"  
             with open(caminho_saida, "w", encoding="utf-8") as arquivo_saida:
                 arquivo_saida.write("Tabela de Símbolos:\n")
                 arquivo_saida.write("Identificador         ID\n")
@@ -170,15 +163,13 @@ class Analisador:
         except Exception as e:
             print(f"Erro ao gerar o arquivo de saída: {e}")
 
-# Função principal que orquestra a análise léxica e a geração de saída
 def main():
-    caminho_entrada = "teste.txt"  # Caminho do arquivo de entrada
+    caminho_entrada = "teste.txt" 
 
     anas = Analisador(caminho_entrada)
-    anas.analisador_lexico()  # Realizar a análise léxica
-    anas.agrupa_tokens()  # Agrupar os tokens e identificar seus tipos
-    anas.gerar_arquivo_saida()  # Gerar o arquivo de saída
+    anas.analisador_lexico() 
+    anas.agrupa_tokens() 
+    anas.gerar_arquivo_saida() 
 
-# Executar a função principal
 if __name__ == "__main__":
     main()
