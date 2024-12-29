@@ -1,74 +1,53 @@
 Tabela de Símbolos:
 Identificador         ID
-java                1
-util                2
-Random              3
-NumeroAleatorio     4
-main                5
-String              6
-args                7
-random              8
-numeroAleatorio     9
-nextInt             10
-System              11
-out                 12
-println             13
+main                1
+String              2
+args                3
+valor               4
+taxa                5
+juros               6
+System              7
+out                 8
+println             9
 
 
 Lista de Tokens:
 Token               Tipo            ID
 
-import         Palavra-chave       None
-id,1           Identificador       None
-.              Delimitador
-id,2           Identificador       None
-.              Delimitador
-id,3           Identificador       None
-;              Delimitador
-public         Palavra-chave       None
-class          Palavra-chave       None
-id,4           Identificador       None
-{              Delimitador
 public         Palavra-chave       None
 static         Palavra-chave       None
 void           Tipo de dado        None
-id,5           Identificador       None
+id,1           Identificador       None
 (              Delimitador
-id,6           Identificador       None
+id,2           Identificador       None
 [              Delimitador
 ]              Delimitador
-id,7           Identificador       None
+id,3           Identificador       None
 )              Delimitador
 {              Delimitador
-id,3           Identificador       None
-id,8           Identificador       None
+float          Tipo de dado        None
+id,4           Identificador       None
 =              Operador de AtribuicaoNone
-new            Palavra-chave       None
-id,3           Identificador       None
-(              Delimitador
-)              Delimitador
-;              Delimitador
-int            Tipo de dado        None
-id,9           Identificador       None
+1000           Número              None
+,              Delimitador
+id,5           Identificador       None
 =              Operador de AtribuicaoNone
+2              Número              None
+;              Delimitador
+float          Tipo de dado        None
+id,6           Identificador       None
+=              Operador de AtribuicaoNone
+id,4           Identificador       None
+*              Operador de MultiplicacaoNone
+id,5           Identificador       None
+;              Delimitador
+id,7           Identificador       None
+.              Delimitador
 id,8           Identificador       None
 .              Delimitador
-id,10          Identificador       None
-(              Delimitador
-100            Número              None
-)              Delimitador
-+              Operador de Soma    None
-1              Número              None
-;              Delimitador
-id,11          Identificador       None
-.              Delimitador
-id,12          Identificador       None
-.              Delimitador
-id,13          Identificador       None
-(              Delimitador
-"NÃºmero aleatÃ³rio gerado: "STRING              None
-+              Operador de Soma    None
 id,9           Identificador       None
+(              Delimitador
+id,6           Identificador       None
 )              Delimitador
 ;              Delimitador
 }              Delimitador
